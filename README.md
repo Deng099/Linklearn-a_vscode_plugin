@@ -1,6 +1,6 @@
 # LinkLearn
 
-一个面向 Markdown / MDX 的 VS Code 扩展：在文档中识别 `[[术语]]`，并把术语解释沉淀到工作区内的 `.linklearn/concepts/*.md`。
+一个面向 Markdown / MDX 的 VS Code 扩展：在文档中识别 `[[术语]]`，并把术语解释存储在到工作区内的 `.linklearn/concepts/*.md`；可针对术语追加提问，递推式进行，目标形成mindmap
 
 ---
 
