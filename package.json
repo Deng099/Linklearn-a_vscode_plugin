@@ -1,0 +1,160 @@
+{
+  "name": "linklearn",
+  "displayName": "linklearn",
+  "description": "explain your concept problem",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.109.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onLanguage:markdown",
+    "onLanguage:mdx"
+  ],
+  "contributes": {
+    "configuration": {
+      "title": "LinkLearn",
+      "properties": {
+        "linklearn.ai.baseUrl": {
+          "type": "string",
+          "default": "",
+          "description": "OpenAI-compatible API base URL used by Auto Generate."
+        },
+        "linklearn.ai.apiKey": {
+          "type": "string",
+          "default": "",
+          "markdownDescription": "API key used by Auto Generate. You can set it in User or Workspace settings."
+        },
+        "linklearn.ai.model": {
+          "type": "string",
+          "default": "",
+          "description": "Model name used for concept generation."
+        },
+        "linklearn.ai.timeoutMs": {
+          "type": "number",
+          "default": 45000,
+          "description": "HTTP timeout in milliseconds for each AI request."
+        },
+        "linklearn.ai.maxRetries": {
+          "type": "number",
+          "default": 2,
+          "description": "Maximum retry count for failed AI requests."
+        },
+        "linklearn.ai.provider": {
+          "type": "string",
+          "enum": [
+            "openai",
+            "mock"
+          ],
+          "default": "mock",
+          "description": "AI provider used by LinkLearn. Use mock for local development and openai for production."
+        },
+        "linklearn.ai.debug": {
+          "type": "boolean",
+          "default": false,
+          "description": "Print AI request payloads to debug console."
+        },
+        "linklearn.ai.narrativeSystemPrompt": {
+          "type": "string",
+          "default": "",
+          "markdownDescription": "Optional custom system prompt for natural narration (used when linklearn.render.naturalMode = ai). Leave empty to use built-in default."
+        },
+        "linklearn.ai.narrativeUserPromptTemplate": {
+          "type": "string",
+          "default": "",
+          "markdownDescription": "Optional custom user prompt template for natural narration. You can use `${conceptJson}` as placeholder. Leave empty to use built-in default."
+        },
+        "linklearn.render.naturalMode": {
+          "type": "string",
+          "enum": [
+            "template",
+            "ai"
+          ],
+          "default": "template",
+          "description": "How to render natural-language concept narration: template (low cost) or ai (better fluency)."
+        },
+        "linklearn.render.outputLanguage": {
+          "type": "string",
+          "enum": [
+            "zh",
+            "en",
+            "bilingual"
+          ],
+          "default": "zh",
+          "description": "Language mode for generated concept.md content."
+        },
+        "linklearn.generate.useContext": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether auto-generate includes nearby markdown context automatically."
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "linklearn.helloWorld",
+        "title": "LinkLearn: Hello World"
+      },
+      {
+        "command": "linklearn.openConcept",
+        "title": "LinkLearn: Open Concept"
+      },
+      {
+        "command": "linklearn.editExplanation",
+        "title": "LinkLearn: Edit One-line Explanation"
+      },
+      {
+        "command": "linklearn.generateConcept",
+        "title": "LinkLearn: Generate Concept with AI"
+      },
+      {
+        "command": "linklearn.askConcept",
+        "title": "LinkLearn: Ask Concept Question"
+      },
+      {
+        "command": "linklearn.setApiKey",
+        "title": "LinkLearn: Set API Key"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "linklearn.openConcept"
+        },
+        {
+          "command": "linklearn.editExplanation"
+        },
+        {
+          "command": "linklearn.generateConcept"
+        },
+        {
+          "command": "linklearn.askConcept"
+        },
+        {
+          "command": "linklearn.setApiKey"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.109.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "typescript-eslint": "^8.54.0",
+    "eslint": "^9.39.2",
+    "typescript": "^5.9.3",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2"
+  }
+}

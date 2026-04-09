@@ -1,0 +1,18 @@
+# ===== Build artifacts =====
+out/
+dist/
+*.vsix
+
+# ===== Dependencies =====
+node_modules/
+
+# ===== VSCode test =====
+.vscode-test/
+
+# ===== Secrets =====
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
